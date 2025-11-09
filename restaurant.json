@@ -1,0 +1,57 @@
+{
+  "Restaurant": {
+    "Name": "Flavor House",
+    "Address": {
+      "city": "Vilnius",
+      "street": "Gedimino Ave. 10"
+    },
+    "Menu": {
+      "Dish": [
+        {
+          "id": "D001",
+          "category": "Main",
+          "vegetarian": false,
+          "Name": "Grilled Chicken",
+          "Price": 12.50,
+          "Calories": 540,
+          "Ingredients": ["Chicken", "Potatoes", "Vegetables"]
+        },
+        {
+          "id": "D002",
+          "category": "Main",
+          "vegetarian": true,
+          "Name": "Vegetarian Curry",
+          "Price": 5.90,
+          "Calories": 480,
+          "Ingredients": ["Tofu", "Vegetables", "Coconut Milk"]
+        },
+        {
+          "id": "D003",
+          "category": "Dessert",
+          "vegetarian": true,
+          "Name": "Chocolate Cake",
+          "Price": 5.20,
+          "Calories": 380,
+          "Ingredients": ["Chocolate", "Eggs", "Sugar"]
+        }
+      ]
+    },
+    "Orders": {
+      "Order": {
+        "number": "O001",
+        "date": "2025-10-08",
+        "Customer": {
+          "FirstName": "John",
+          "LastName": "Johnson",
+          "PhoneNumber": "+37012345678"
+        },
+        "Dishes": [
+          { "id": "D001", "quantity": 1 },
+          { "id": "D002", "quantity": 1 },
+          { "id": "D003", "quantity": 1 }
+        ],
+        "TotalAmount": 23.60
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+1) /Restaurant/m:Menu/m:Dish[2]
+    a) /Restaurant/m:Menu/m:Dish[2]/ancestor::Restaurant
+    b) /Restaurant/m:Menu/m:Dish[2]/descendant::m:Ingredient
+    c) /Restaurant/m:Menu/m:Dish[2]/following-sibling::m:Dish
+    d) /Restaurant/m:Menu/m:Dish[2]/preceding-sibling::m:Dish
+    e) /Restaurant/m:Menu/m:Dish[2]/following::o:Order
+    f) /Restaurant/m:Menu/m:Dish[2]/preceding::Name
+    g) /Restaurant/m:Menu/m:Dish[2]/attribute::id
+2) //m:Dish[@category = (//m:Dish)[1]/@category]
+3) count(//*[text()[normalize-space()]])
+4)
+    a) //m:Price < //o:TotalAmount
+    b1) //m:Dish/@id = 'D001'
+    b2) //m:Dish = //m:Dish[1]
+    c)  //o:TotalAmount + 100
+5) (//o:Order[@number='O001'])
+/ancestor::Restaurant
+/descendant::m:Menu//m:Dish[@vegetarian='false']
+6) 
+    a) //m:Calories = 540
+    b) //m:Dish/@category = 'Main'
+    c) //m:DishRef != true()
+    d) //m:Dish[1]/@category != //m:Dish[3]/@category
+7) //m:Price < //o:TotalAmount

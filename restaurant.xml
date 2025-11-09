@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Restaurant xmlns="http://www.example.com/restaurant"
+            xmlns:m="http://www.example.com/menu"
+            xmlns:o="http://www.example.com/orders">
+    <Name>Flavor House</Name>
+    <Address city="Vilnius" street="Gedimino Ave. 10" />
+    <m:Menu>
+        <m:Dish id="D001" category="Main" vegetarian="false">
+            <m:Name>Grilled Chicken</m:Name>
+            <m:Price>12.50</m:Price>
+            <m:Calories>540</m:Calories>
+            <m:Ingredients>
+                <m:Ingredient>Chicken</m:Ingredient>
+                <m:Ingredient>Potatoes</m:Ingredient>
+                <m:Ingredient>Vegetables</m:Ingredient>
+            </m:Ingredients>
+        </m:Dish>
+        <m:Dish id="D002" category="Main" vegetarian="true">
+            <m:Name>Vegetarian Curry</m:Name>
+            <m:Price>5.90</m:Price>
+            <m:Calories>480</m:Calories>
+            <m:Ingredients>
+                <m:Ingredient>Tofu</m:Ingredient>
+                <m:Ingredient>Vegetables</m:Ingredient>
+                <m:Ingredient>Coconut Milk</m:Ingredient>
+            </m:Ingredients>
+        </m:Dish>
+        <m:Dish id="D003" category="Dessert" vegetarian="true">
+            <m:Name>Chocolate Cake</m:Name>
+            <m:Price>5.20</m:Price>
+            <m:Calories>380</m:Calories>
+            <m:Ingredients>
+                <m:Ingredient>Chocolate</m:Ingredient>
+                <m:Ingredient>Eggs</m:Ingredient>
+                <m:Ingredient>Sugar</m:Ingredient>
+            </m:Ingredients>
+        </m:Dish>
+    </m:Menu>
+
+    <o:Orders>
+        <o:Order number="O001" date="2025-10-08">
+            <o:Customer>
+                <o:FirstName>John</o:FirstName>
+                <o:LastName>Johnson</o:LastName>
+                <o:PhoneNumber>+37012345678</o:PhoneNumber>
+            </o:Customer>
+            <o:Dishes>
+                <o:DishRef id="D001" quantity="1" />
+                <o:DishRef id="D002" quantity="1" />
+                <o:DishRef id="D003" quantity="1" />
+            </o:Dishes>
+            <o:TotalAmount>23.60</o:TotalAmount>
+        </o:Order>
+    </o:Orders>
+</Restaurant>
