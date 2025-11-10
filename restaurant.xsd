@@ -31,6 +31,12 @@
             <xs:field xpath="@id"/>
         </xs:key>
 
+        <xs:key name="OrderKey">
+            <xs:selector xpath="o:Orders/o:Order"/>
+            <xs:field xpath="@number"/>
+            <xs:field xpath="@date"/>
+        </xs:key>
+
         <xs:keyref name="DishRefKey" refer="DishKey">
             <xs:selector xpath="o:Orders/o:Order/o:Dishes/o:DishRef"/>
             <xs:field xpath="@id"/>
