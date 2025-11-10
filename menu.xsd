@@ -34,6 +34,7 @@
         </xs:complexType>
     </xs:element>
 
+    <!--2.1-->
     <xs:simpleType name="categoryType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Soup"/>
