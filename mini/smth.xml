@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<augalas xmlns:xsi="http://www.example.com/augalas"
+        xsi:noNamespaceSchemaLocation="smth.xsd">
+    <augalasTipas>Medis</augalasTipas>
+    <pavadinimas>Azuolas</pavadinimas>
+    <lapuTipas>Plokscias</lapuTipas>
+    <amzius>120</amzius>
+    <aukstis>25.5</aukstis>
+</augalas>

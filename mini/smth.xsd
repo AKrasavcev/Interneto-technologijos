@@ -1,0 +1,35 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="augalas">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="augalasTipas" type="Augalas"/>
+                <xs:element name="pavadinimas" type="xs:string"/>
+                <xs:element name="lapuTipas" type="LapuTipas"/>
+                <xs:element name="amzius" type="Amzius"/>
+                <xs:element name="aukstis" type="xs:decimal"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="Augalas">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Medis"/>
+            <xs:enumeration value="Krumas"/>
+            <xs:enumeration value="Gele"/>
+            <xs:enumeration value="Zole"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="LapuTipas">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Plokscias"/>
+            <xs:enumeration value="Spygliuoti"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Amzius">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="1000"/>
+        </xs:restriction>
+</xs:schema>
