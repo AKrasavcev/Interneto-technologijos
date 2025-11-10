@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.example.com/menu"
+           targetNamespace="http://www.example.com/menu"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:element name="Menu">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Dish" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Name" type="DishNameRestrictedType"/>
+                            <xs:element name="Price" type="PriceType"/>
+                            <xs:element name="Calories" type="xs:integer"/>
+                            <xs:element name="DishOptions" type="DishOptionsType" minOccurs="0"/>
+                            <xs:element name="Ingredients">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Ingredient" type="xs:string" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Allergens" type="AllergensList" minOccurs="0"/>
+                            <xs:element name="Description" type="DescriptionType" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:ID" use="required"/>
+                        <xs:attribute name="category" type="categoryType" use="required"/>
+                        <xs:attribute name="vegetarian" type="xs:boolean" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="categoryType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Soup"/>
+            <xs:enumeration value="Main"/>
+            <xs:enumeration value="Dessert"/>
+            <xs:enumeration value="Beverage"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--2.2-->
+    <xs:simpleType name="AllergensList">
+        <xs:list itemType="AllergenType"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="AllergenType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Gluten"/>
+            <xs:enumeration value="Peanuts"/>
+            <xs:enumeration value="Dairy"/>
+            <xs:enumeration value="Soy"/>
+            <xs:enumeration value="Eggs"/>
+            <xs:enumeration value="Fish"/>
+            <xs:enumeration value="Shellfish"/>
+            <xs:enumeration value="TreeNuts"/>
+            <xs:enumeration value="Wheat"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PriceType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:totalDigits value="5"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DishNameBaseType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!--2.3.2-->
+    <xs:complexType name="DishNameType">
+        <xs:simpleContent>
+            <xs:extension base="DishNameBaseType">
+                <xs:attribute name="lang" type="xs:string" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!--2.3.1-->
+    <xs:complexType name="DishNameRestrictedType">
+        <xs:simpleContent>
+            <xs:restriction base="DishNameType">
+                <xs:whiteSpace value="preserve"/>
+            </xs:restriction>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!--2.3.6-->
+    <xs:complexType name="DescriptionType" mixed="true">
+        <xs:sequence>
+            <xs:element name="Highlight" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--2.3.7-->
+    <xs:complexType name="DishOptionsType">
+        <xs:choice>
+            <xs:element name="SpiceLevel" type="xs:string"/>
+            <xs:element name="CookingMethod" type="xs:string"/>
+        </xs:choice>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "http://www.example.com/menu.schema.json",
+  "title": "Menu",
+  "type": "object",
+  "properties": {
+    "Dish": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Dish" },
+      "minItems": 1
+    }
+  },
+  "required": ["Dish"],
+
+  "$defs": {
+    "Dish": {
+      "type": "object",
+      "properties": {
+        "@id": { "type": "string" },
+        "@category": {
+          "type": "string",
+          "enum": ["Soup", "Main", "Dessert", "Beverage"]
+        },
+        "@vegetarian": { "type": "boolean" },
+        "Name": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "@lang": { "type": "string" },
+                "#text": { "type": "string", "minLength": 1, "maxLength": 100 }
+              },
+              "required": ["#text"]
+            },
+            { "type": "string", "minLength": 1, "maxLength": 100 }
+          ]
+        },
+        "Price": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 999.99
+        },
+        "Calories": { "type": "integer", "minimum": 0 },
+        "DishOptions": {
+          "type": "object",
+          "oneOf": [
+            {
+              "properties": { "SpiceLevel": { "type": "string" } },
+              "required": ["SpiceLevel"]
+            },
+            {
+              "properties": { "CookingMethod": { "type": "string" } },
+              "required": ["CookingMethod"]
+            }
+          ]
+        },
+        "Ingredients": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "Allergens": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [ "Gluten", "Peanuts", "Dairy", "Soy", "Eggs", "Fish", "Shellfish", "TreeNuts", "Wheat" ]
+          },
+          "uniqueItems": true
+        },
+        "Description": { "type": "string" }
+      },
+      "required": ["@id", "@category", "@vegetarian", "Name", "Price", "Calories", "Ingredients"]
+    }
+  }
+}

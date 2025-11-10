@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "http://www.example.com/orders.schema.json",
+  "title": "Orders",
+  "type": "object",
+  "properties": {
+    "Order": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Order" },
+      "minItems": 1
+    }
+  },
+  "required": ["Order"],
+
+  "$defs": {
+    "Order": {
+      "type": "object",
+      "properties": {
+        "@number": { "type": "string" },
+        "@date": { "type": "string", "format": "date" },
+        "Customer": { "$ref": "#/$defs/ExtendedCustomerType" },
+        "Dishes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@id": { "type": "string" },
+              "@quantity": { "type": "integer", "minimum": 1 }
+            },
+            "required": ["@id", "@quantity"]
+          }
+        },
+        "TotalAmount": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 9999.99
+        }
+      },
+      "required": ["@number", "@date", "Customer", "Dishes", "TotalAmount"]
+    },
+
+    "ExtendedCustomerType": {
+      "type": "object",
+      "properties": {
+        "@VIP": { "type": "boolean" },
+        "@membershipLevel": { "type": "string" },
+        "FirstName": { "type": "string" },
+        "LastName": { "type": "string" },
+        "PhoneNumber": {
+          "type": "string",
+          "pattern": "^\\+\\d{3} \\d{3} \\d{5}$"
+        },
+        "LoyaltyPoints": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["@VIP", "FirstName", "LastName", "PhoneNumber"]
+    }
+  }
+}
+

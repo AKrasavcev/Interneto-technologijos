@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./restaurant-combined.schema.json",
+  "title": "Restaurant",
+  "type": "object",
+  "properties": {
+    "Restaurant": {
+      "type": "object",
+      "properties": {
+        "Name": { "type": "string" },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "@city": { "type": "string" },
+            "@street": { "type": "string" }
+          },
+          "required": ["@city", "@street"]
+        },
+        "Menu": {
+          "type": "object",
+          "properties": {
+            "Dish": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/Dish" },
+              "minItems": 1
+            }
+          },
+          "required": ["Dish"]
+        },
+        "Orders": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Order" },
+          "minItems": 1
+        }
+      },
+      "required": ["Name", "Address", "Menu", "Orders"]
+    }
+  },
+  "required": ["Restaurant"],
+
+  "$defs": {
+    "Dish": {
+      "type": "object",
+      "properties": {
+        "@id": { "type": "string", "pattern": "^D\\d{3}$" },
+        "@category": {
+          "type": "string",
+          "enum": ["Soup", "Main", "Dessert", "Beverage"]
+        },
+        "@vegetarian": { "type": "boolean" },
+        "Name": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "@lang": { "type": "string" },
+                "#text": { "type": "string", "minLength": 1, "maxLength": 100 }
+              },
+              "required": ["#text"]
+            },
+            { "type": "string", "minLength": 1, "maxLength": 100 }
+          ]
+        },
+        "Price": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 999.99
+        },
+        "Calories": { "type": "integer", "minimum": 0 },
+        "DishOptions": {
+          "type": "object",
+          "oneOf": [
+            {
+              "properties": { "SpiceLevel": { "type": "string" } },
+              "required": ["SpiceLevel"]
+            },
+            {
+              "properties": { "CookingMethod": { "type": "string" } },
+              "required": ["CookingMethod"]
+            }
+          ]
+        },
+        "Ingredients": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "Allergens": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [ "Gluten", "Peanuts", "Dairy", "Soy", "Eggs", "Fish", "Shellfish", "TreeNuts", "Wheat" ]
+              },
+              "uniqueItems": true
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "Description": { "type": "string" }
+      },
+      "required": ["@id", "@category", "@vegetarian", "Name", "Price", "Calories", "Ingredients"]
+    },
+
+    "Order": {
+      "type": "object",
+      "properties": {
+        "@number": { "type": "string", "pattern": "^O\\d{3}$" },
+        "@date": { "type": "string", "format": "date" },
+        "Customer": {
+          "allOf": [ 
+            { "type": "object",
+              "properties": {
+                "@VIP": { "type": "boolean" },
+                "FirstName": { "type": "string" },
+                "LastName": { "type": "string" },
+                "PhoneNumber": {
+                  "type": "string",
+                  "pattern": "^\\+\\d{3} \\d{3} \\d{5}$"
+                }
+              },
+              "required": ["@VIP", "FirstName", "LastName", "PhoneNumber"]
+            },
+            { 
+              "type": "object",
+              "properties": {
+                "@membershipLevel": { "type": "string" },
+                "LoyaltyPoints": { "type": "integer", "minimum": 0 }
+              }
+            }
+          ]
+        },
+        "Dishes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@id": { "type": "string", "pattern": "^D\\d{3}$" },
+              "@quantity": { "type": "integer", "minimum": 1 }
+            },
+            "required": ["@id", "@quantity"]
+          }
+        },
+        "TotalAmount": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 9999.99
+        }
+      },
+      "required": ["@number", "@date", "Customer", "Dishes", "TotalAmount"]
+    },
+
+    "CustomerType": {
+      "type": "object",
+      "properties": {
+        "@VIP": { "type": "boolean" },
+        "FirstName": { "type": "string" },
+        "LastName": { "type": "string" },
+        "PhoneNumber": {
+          "type": "string",
+          "pattern": "^\\+\\d{3} \\d{3} \\d{5}$"
+        }
+      },
+      "required": ["@VIP", "FirstName", "LastName", "PhoneNumber"]
+    }
+  }
+}

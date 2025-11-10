@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.example.com/restaurant"
+           xmlns:m="http://www.example.com/menu"
+           xmlns:o="http://www.example.com/orders"
+           targetNamespace="http://www.example.com/restaurant"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:import namespace="http://www.example.com/menu" schemaLocation="menu.xsd"/>
+    <xs:import namespace="http://www.example.com/orders" schemaLocation="orders.xsd"/>
+
+    <xs:element name="Restaurant">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string"/>
+                <xs:element name="Address">
+                    <xs:complexType>
+                        <xs:attribute name="city" type="xs:string" use="required"/>
+                        <xs:attribute name="street" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="m:Menu"/>
+                <xs:element ref="o:Orders"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:key name="DishKey">
+            <xs:selector xpath="m:Menu/m:Dish"/>
+            <xs:field xpath="@id"/>
+        </xs:key>
+
+        <xs:keyref name="DishRefKey" refer="DishKey">
+            <xs:selector xpath="o:Orders/o:Order/o:Dishes/o:DishRef"/>
+            <xs:field xpath="@id"/>
+        </xs:keyref>
+    </xs:element>
+    
+</xs:schema>

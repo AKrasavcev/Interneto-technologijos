@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Restaurant xmlns="http://www.example.com/restaurant"
             xmlns:m="http://www.example.com/menu"
-            xmlns:o="http://www.example.com/orders">
+            xmlns:o="http://www.example.com/orders"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.example.com/restaurant restaurant.xsd">
     <Name>Flavor House</Name>
     <Address city="Vilnius" street="Gedimino Ave. 10" />
     <m:Menu>
         <m:Dish id="D001" category="Main" vegetarian="false">
-            <m:Name>Grilled Chicken</m:Name>
+            <m:Name lang="en">Grilled Chicken</m:Name>
             <m:Price>12.50</m:Price>
             <m:Calories>540</m:Calories>
+            <m:DishOptions>
+                <m:CookingMethod>Grilled</m:CookingMethod>
+            </m:DishOptions>
             <m:Ingredients>
                 <m:Ingredient>Chicken</m:Ingredient>
                 <m:Ingredient>Potatoes</m:Ingredient>
                 <m:Ingredient>Vegetables</m:Ingredient>
             </m:Ingredients>
+            <m:Allergens>Gluten Dairy</m:Allergens>
+            <m:Description>A delicious <m:Highlight>grilled chicken</m:Highlight> served with roasted potatoes and fresh vegetables.</m:Description>
         </m:Dish>
         <m:Dish id="D002" category="Main" vegetarian="true">
             <m:Name>Vegetarian Curry</m:Name>
             <m:Price>5.90</m:Price>
             <m:Calories>480</m:Calories>
+            <m:DishOptions>
+                <m:SpiceLevel>Hot</m:SpiceLevel>
+            </m:DishOptions>
             <m:Ingredients>
                 <m:Ingredient>Tofu</m:Ingredient>
                 <m:Ingredient>Vegetables</m:Ingredient>
                 <m:Ingredient>Coconut Milk</m:Ingredient>
             </m:Ingredients>
+            <m:Allergens>Soy</m:Allergens>
+            <m:Description>A flavorful <m:Highlight>curry</m:Highlight> made with tofu and a mix of fresh vegetables, served in a coconut milk sauce.</m:Description>
         </m:Dish>
         <m:Dish id="D003" category="Dessert" vegetarian="true">
             <m:Name>Chocolate Cake</m:Name>
@@ -34,15 +46,18 @@
                 <m:Ingredient>Eggs</m:Ingredient>
                 <m:Ingredient>Sugar</m:Ingredient>
             </m:Ingredients>
+            <m:Allergens>Eggs Dairy Gluten</m:Allergens>
+            <m:Description>A rich and moist <m:Highlight>chocolate cake</m:Highlight> topped with creamy chocolate frosting.</m:Description>
         </m:Dish>
     </m:Menu>
 
     <o:Orders>
         <o:Order number="O001" date="2025-10-08">
-            <o:Customer>
+            <o:Customer VIP="true" membershipLevel="Gold">
                 <o:FirstName>John</o:FirstName>
                 <o:LastName>Johnson</o:LastName>
-                <o:PhoneNumber>+37012345678</o:PhoneNumber>
+                <o:PhoneNumber>+370 123 45678</o:PhoneNumber>
+                <o:LoyaltyPoints>150</o:LoyaltyPoints>
             </o:Customer>
             <o:Dishes>
                 <o:DishRef id="D001" quantity="1" />

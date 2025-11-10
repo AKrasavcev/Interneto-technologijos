@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.example.com/orders"
+           targetNamespace="http://www.example.com/orders"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <xs:element name="Orders">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Order" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Customer" type="ExtendedCustomerType"/>
+                            <xs:element name="Dishes">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="DishRef" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="id" type="xs:IDREF" use="required"/>
+                                                <xs:attribute name="quantity" type="xs:integer" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="TotalAmount" type="TotalPriceType"/>
+                        </xs:sequence>
+                        <xs:attribute name="number" type="xs:string" use="required"/>
+                        <xs:attribute name="date" type="xs:date" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--2.1-->
+    <xs:simpleType name="PhoneNumberType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\+\d{3} \d{3} \d{5}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TotalPriceType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0.00"/>
+            <xs:totalDigits value="6"/>
+            <xs:fractionDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="CustomerType">
+        <xs:sequence>
+            <xs:element name="FirstName" type="xs:string"/>
+            <xs:element name="LastName" type="xs:string"/>
+            <xs:element name="PhoneNumber" type="PhoneNumberType"/>
+            <xs:element name="Email" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="VIP" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+
+    <!--2.4.1-->
+    <xs:complexType name="RestrictedCustomerType">
+        <xs:complexContent>
+            <xs:restriction base="CustomerType">
+                <xs:sequence>
+                    <xs:element name="FirstName" type="xs:string"/>
+                    <xs:element name="LastName" type="xs:string"/>
+                    <xs:element name="PhoneNumber" type="PhoneNumberType"/>
+                </xs:sequence>
+                <xs:attribute name="VIP" type="xs:boolean" use="required"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <!--2.4.2-->
+    <xs:complexType name="ExtendedCustomerType">
+        <xs:complexContent>
+            <xs:extension base="RestrictedCustomerType">
+                <xs:sequence>
+                    <xs:element name="LoyaltyPoints" type="xs:integer" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="membershipLevel" type="xs:string" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

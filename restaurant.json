@@ -2,56 +2,78 @@
   "Restaurant": {
     "Name": "Flavor House",
     "Address": {
-      "city": "Vilnius",
-      "street": "Gedimino Ave. 10"
+      "@city": "Vilnius",
+      "@street": "Gedimino Ave. 10"
     },
     "Menu": {
       "Dish": [
         {
-          "id": "D001",
-          "category": "Main",
-          "vegetarian": false,
-          "Name": "Grilled Chicken",
+          "@id": "D001",
+          "@category": "Main",
+          "@vegetarian": false,
+          "Name": {
+            "@lang": "en",
+            "#text": "Grilled Chicken"
+          },
           "Price": 12.50,
           "Calories": 540,
-          "Ingredients": ["Chicken", "Potatoes", "Vegetables"]
+          "DishOptions": {
+            "CookingMethod": "Grilled"
+          },
+          "Ingredients": ["Chicken", "Potatoes", "Vegetables"],
+          "Allergens": ["Gluten", "Dairy"],
+          "Description": "A delicious grilled chicken served with roasted potatoes and fresh vegetables."
         },
         {
-          "id": "D002",
-          "category": "Main",
-          "vegetarian": true,
-          "Name": "Vegetarian Curry",
+          "@id": "D002",
+          "@category": "Main",
+          "@vegetarian": true,
+          "Name": {
+            "#text": "Vegetarian Curry"
+          },
           "Price": 5.90,
           "Calories": 480,
-          "Ingredients": ["Tofu", "Vegetables", "Coconut Milk"]
+          "DishOptions": {
+            "SpiceLevel": "Hot"
+          },
+          "Ingredients": ["Tofu", "Vegetables", "Coconut Milk"],
+          "Allergens": ["Soy"],
+          "Description": "A flavorful curry made with tofu and a mix of fresh vegetables, served in a coconut milk sauce."
         },
         {
-          "id": "D003",
-          "category": "Dessert",
-          "vegetarian": true,
-          "Name": "Chocolate Cake",
+          "@id": "D003",
+          "@category": "Dessert",
+          "@vegetarian": true,
+          "Name": {
+            "#text": "Chocolate Cake"
+          },
           "Price": 5.20,
           "Calories": 380,
-          "Ingredients": ["Chocolate", "Eggs", "Sugar"]
+          "Ingredients": ["Chocolate", "Eggs", "Sugar"],
+          "Allergens": ["Eggs", "Dairy", "Gluten"],
+          "Description": "A rich and moist chocolate cake topped with creamy chocolate frosting."
         }
       ]
     },
-    "Orders": {
-      "Order": {
-        "number": "O001",
-        "date": "2025-10-08",
+    "Orders": [
+      {
+        "@number": "O001",
+        "@date": "2025-10-08",
         "Customer": {
+          "@VIP": true,
+          "@membershipLevel": "Gold",
           "FirstName": "John",
           "LastName": "Johnson",
-          "PhoneNumber": "+37012345678"
+          "PhoneNumber": "+370 123 45678",
+          "LoyaltyPoints": 150
         },
         "Dishes": [
-          { "id": "D001", "quantity": 1 },
-          { "id": "D002", "quantity": 1 },
-          { "id": "D003", "quantity": 1 }
+          { "@id": "D001", "@quantity": 1 },
+          { "@id": "D002", "@quantity": 1 },
+          { "@id": "D003", "@quantity": 1 }
         ],
         "TotalAmount": 23.60
       }
-    }
+    ]
   }
 }
