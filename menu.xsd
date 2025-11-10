@@ -95,14 +95,14 @@
         </xs:simpleContent>
     </xs:complexType>
 
-    <!--2.3.6-->
+    <!--2.6-->
     <xs:complexType name="DescriptionType" mixed="true">
         <xs:sequence>
             <xs:element name="Highlight" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
-    <!--2.3.7-->
+    <!--2.7-->
     <xs:complexType name="DishOptionsType">
         <xs:choice>
             <xs:element name="SpiceLevel" type="xs:string"/>

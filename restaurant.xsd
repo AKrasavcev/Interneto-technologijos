@@ -25,6 +25,7 @@
             </xs:sequence>
         </xs:complexType>
 
+        <!--2.8-->
         <xs:key name="DishKey">
             <xs:selector xpath="m:Menu/m:Dish"/>
             <xs:field xpath="@id"/>
