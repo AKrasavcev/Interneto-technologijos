@@ -1,0 +1,248 @@
+/* Main stylesheet for Lab 3 (English) */
+:root {
+  --accent: #1a73e8;
+  --muted: #444;
+}
+
+/* Center the page: limit width and center header, main and footer */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centers the single-column content horizontally */
+  margin: 0;
+  padding: 0;
+}
+
+/* Constrain major blocks so they appear centered and readable */
+#hero,
+main,
+footer {
+  width: min(1100px, 95%);
+}
+
+/* ID selector — specific block (higher specificity than class) */
+#hero {
+  background: #f3f7fb;
+  padding: 1rem;
+  color: var(--accent); /* inherited color example (children may inherit) */
+}
+
+/* Class selector */
+.tagline {
+  font-style: italic;
+  color: inherit; /* inheritance example: inherits color from #hero; removing 'inherit' will change appearance */
+}
+
+/* Descendant selector: any a inside header nav */
+header nav a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+/* Center navigation items horizontally */
+nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Child selector: direct children only */
+nav > ul > li > a {
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+}
+
+/* Attribute selector: links that end with .html */
+a[href$=".html"] {
+  border-bottom: 1px dashed currentColor;
+}
+
+/* Descendant + class example */
+main .dish .description {
+  margin-top: 0.25rem;
+}
+
+/* Ensure the article title stays on top; body below will align image and details */
+main .dish {
+  display: block;
+}
+
+/* Layout: place image and text side-by-side using flexbox inside .dish-body */
+main .dish .dish-body {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap; /* allow wrapping on very small screens */
+}
+
+/* Make the image a fixed column on larger screens and responsive on small screens */
+main .dish .dish-body img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+  flex: 0 0 300px; /* don't grow or shrink below 300px column on larger screens */
+  display: block;
+}
+
+/* The info column can grow and shrink */
+main .dish .dish-body .dish-info {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 600px) {
+  /* stack image above text on small screens */
+  main .dish .dish-body {
+    flex-direction: column;
+  }
+
+  main .dish .dish-body img {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+}
+
+/* .cta class with !important example: !important forces this rule to win over other competing rules */
+/* Primary CTA styling (keeps the !important demonstration but looks better) */
+button.cta {
+  background: var(--accent) !important;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(26,115,232,0.18);
+  font-weight: 600;
+}
+
+/* Attempt to override .cta without !important — this will lose to the previous rule */
+button.special-override.cta {
+  background: #00cc66;
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.4rem;
+  text-align: left;
+}
+
+/* Responsive adjustments using @media (Media Queries Level 3) */
+@media (max-width: 600px) {
+  /* change nav layout from horizontal to vertical */
+  nav > ul > li {
+    display: block;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  /* Simple responsive table to stack rows on small screens */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead { display: none; }
+
+  td {
+    border: none;
+    padding: 0.25rem 0;
+  }
+}
+
+/* ---------- Order form styles (prettier layout) ---------- */
+form.form-card {
+  background: #ffffff;
+  padding: 1.25rem;
+  margin: 1.25rem auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border: 1px solid #f0f0f0;
+}
+
+form.form-card legend {
+  font-weight: 700;
+  padding: 0 0.25rem;
+}
+
+/* Two-column grid for labels+controls on larger screens */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+.form-grid label {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* Make inputs and selects full-width inside grid cells */
+form.form-card input[type="text"],
+form.form-card input[type="email"],
+form.form-card input[type="tel"],
+form.form-card input[type="date"],
+form.form-card input[type="time"],
+form.form-card input[type="number"],
+form.form-card select {
+  width: 100%;
+  padding: 0.5rem 0rem;
+  border-radius: 6px;
+  border: 1px solid #e3e6ea;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.delivery {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.delivery label {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  font-weight: 500;
+}
+
+/* Align the final button to the right on wide screens */
+.form-card button.cta {
+  margin-left: auto;
+  display: block;
+}
+
+/* Small screens: single column form */
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-card {
+    padding: 1rem;
+  }
+  .form-card button.cta {
+    width: 100%;
+  }
+}
+
+/* subtle focus state */
+form.form-card input:focus, form.form-card select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(26,115,232,0.08);
+  border-color: var(--accent);
+}
+
+/* end form styles */
+
+/* End of stylesheet */

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width,initial-scale=1" >
+  <title>Order — Flavor House</title>
+  <link rel="stylesheet" href="styles.css" >
+</head>
+<body>
+  <header id="hero">
+    <h1>Flavor House — Order</h1>
+    <p class="tagline">Place your order</p>
+    <nav>
+      <ul>
+        <li><a href="restaurant.html">Home</a></li>
+        <li><a href="restaurant.html#menu">Menu</a></li>
+        <li><a href="order.html">Order</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="order" aria-labelledby="order-heading">
+      <h2 id="order-heading">Order form</h2>
+
+      <form action="#" method="post" class="form-card">
+        <fieldset class="form-grid">
+          <legend>Customer information</legend>
+
+          <label for="fullname">Full name*</label>
+          <input id="fullname" name="fullname" type="text" required minlength="2" >
+
+          <label for="email">Email*</label>
+          <input id="email" name="email" type="email" required >
+
+          <label for="phone">Phone (format +370 123 45678)</label>
+          <input id="phone" name="phone" type="tel" pattern="^\+370 \d{3} \d{5}$" placeholder="+370 123 45678" required >
+
+          <label for="date">Preferred date*</label>
+          <input id="date" name="date" type="date" required >
+
+          <label for="time">Preferred time</label>
+          <input id="time" name="time" type="time" >
+
+        </fieldset>
+
+        <fieldset class="form-grid">
+          <legend>Order</legend>
+
+          <label for="dish">Choose a dish</label>
+          <select id="dish" name="dish" required>
+            <option value="">-- choose --</option>
+            <option value="D001">D001 — Grilled Chicken</option>
+            <option value="D002">D002 — Vegetarian Curry</option>
+            <option value="D003">D003 — Chocolate Cake</option>
+          </select>
+
+          <label for="quantity">Quantity</label>
+          <input id="quantity" name="quantity" type="number" min="1" max="10" value="1" required >
+
+          <fieldset class="delivery">
+            <legend>Delivery</legend>
+            <label><input type="radio" name="delivery" value="pickup" required > Pickup</label>
+            <label><input type="radio" name="delivery" value="delivery" > Delivery</label>
+          </fieldset>
+
+          <label><input type="checkbox" id="terms" name="terms" required > I agree to the terms (required)</label>
+
+        </fieldset>
+
+        <button type="submit" class="cta">Submit order</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <h2 id="contact-heading">Contact</h2>
+    <address id="contact" aria-labelledby="contact-heading">
+      <p>Contact info and useful links.</p>
+      <p>Phone: <a href="tel:+37012345678">+370 123 45678</a></p>
+      <p>Address: Gedimino Ave. 10, Vilnius</p>
+    </address>
+    <p>&copy; 2025 Flavor House — demonstration</p>
+  </footer>
+</body>
+</html>

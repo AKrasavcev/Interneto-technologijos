@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width,initial-scale=1" >
+	<title>Flavor House — demonstration (HTML5)</title>
+	<link rel="stylesheet" href="styles.css" >
+</head>
+<body>
+	<header id="hero">
+		<h1>Flavor House</h1>
+        <p class="tagline">A delightful place to enjoy delicious food</p>
+        
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#menu">Menu</a></li>
+				<li><a href="order.html">Order</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section id="menu" aria-labelledby="menu-heading">
+			<h2 id="menu-heading">Menu</h2>
+
+			<article class="dish">
+				<h3>Grilled Chicken</h3>
+				<div class="dish-body">
+					<img src="img/Grilled-Chicken.jpg" alt="Grilled Chicken">
+					<div class="dish-info">
+						<p class="description">A delicious grilled chicken served with roasted potatoes and fresh vegetables.</p>
+						<ul>
+							<li>Calories: 540</li>
+							<li>Price: €12.50</li>
+						</ul>
+					</div>
+				</div>
+			</article>
+
+			<article class="dish">
+				<h3>Vegetarian Curry</h3>
+				<div class="dish-body">
+					<img src="img/Indian-vegetable-curry.jpg" alt="Vegetarian Curry">
+					<div class="dish-info">
+						<p class="description">A flavorful curry made with tofu and a mix of fresh vegetables, served in a coconut milk sauce.</p>
+						<ul>
+							<li>Calories: 480</li>
+							<li>Price: €5.90</li>
+						</ul>
+					</div>
+				</div>
+			</article>
+
+			<article class="dish">
+				<h3>Chocolate Cake</h3>
+				<div class="dish-body">
+					<img src="img/chocolate-cake.jpg" alt="Chocolate Cake">
+					<div class="dish-info">
+						<p class="description">A rich and moist chocolate cake topped with creamy chocolate frosting.</p>
+						<ul>
+							<li>Calories: 380</li>
+							<li>Price: €5.20</li>
+						</ul>
+					</div>
+				</div>
+			</article>
+
+			<aside aria-labelledby="specials-heading">
+				<h4 id="specials-heading">Weekly specials</h4>
+				<ol>
+					<li>Wednesday — 10% off vegetarian dishes</li>
+					<li>Friday — free dessert for orders over €20</li>
+				</ol>
+			</aside>
+
+			<h4>Price table</h4>
+			<table>
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Dish</th>
+						<th>Serving</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td rowspan="2">Main</td>
+						<td>Grilled Chicken</td>
+						<td>1 serving</td>
+						<td>€12.50</td>
+					</tr>
+					<tr>
+						<td>Vegetarian Curry</td>
+						<td>1 serving</td>
+						<td>€5.90</td>
+					</tr>
+					<tr>
+						<td colspan="1">Dessert</td>
+						<td>Chocolate Cake</td>
+                        <td>1 serving</td>
+						<td>€5.20</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+
+	<footer>
+		<h2 id="contact-heading">Contact</h2>
+		<address id="contact" aria-labelledby="contact-heading">
+			<p>Contact info and useful links.</p>
+			<p>Phone: <a href="tel:+37012345678">+370 123 45678</a></p>
+			<p>Address: Gedimino Ave. 10, Vilnius</p>
+		</address>
+		<a href="../Lab_1,2/restaurant.xml">Original restaurant (Lab 1,2)</a>
+		<p>&copy; 2025 Flavor House — demonstration</p>
+	</footer>
+</body>
+</html>
