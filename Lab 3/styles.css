@@ -1,128 +1,95 @@
-/* Main stylesheet for Lab 3 (English) */
 :root {
   --accent: #1a73e8;
   --muted: #444;
 }
 
-/* Center the page: limit width and center header, main and footer */
 body {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers the single-column content horizontally */
+  align-items: center;
   margin: 0;
   padding: 0;
 }
 
-/* Constrain major blocks so they appear centered and readable */
-#hero,
-main,
-footer {
+#hero, main, footer {
   width: min(1100px, 95%);
 }
 
-/* ID selector — specific block (higher specificity than class) */
+/* ---------- Header styles ---------- */
+
+/* 3.4 ID selector*/
 #hero {
   background: #f3f7fb;
   padding: 1rem;
-  color: var(--accent); /* inherited color example (children may inherit) */
+  color: var(--accent);
+  border: 1px solid var(--accent);
 }
 
-/* Class selector */
+/* 3.4 Class selector */
 .tagline {
   font-style: italic;
-  color: inherit; /* inheritance example: inherits color from #hero; removing 'inherit' will change appearance */
+  display: inline-block;
+  border: inherit; /* 3.5 Inherit */
+  padding: 0.15rem 0.5rem;
 }
 
-/* Descendant selector: any a inside header nav */
+/* 3.4 Descendant selector */
 header nav a {
   text-decoration: none;
   color: var(--muted);
 }
 
-/* Center navigation items horizontally */
 nav > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
 }
 
-/* Child selector: direct children only */
+/* 3.4 Child selector */
 nav > ul > li > a {
   padding: 0.25rem 0.5rem;
   display: inline-block;
 }
 
-/* Attribute selector: links that end with .html */
+/* 3.4 Attribute selector */
 a[href$=".html"] {
   border-bottom: 1px dashed currentColor;
 }
 
-/* Descendant + class example */
+/* ---------- Main content styles ---------- */
+
 main .dish .description {
   margin-top: 0.25rem;
 }
 
-/* Ensure the article title stays on top; body below will align image and details */
 main .dish {
   display: block;
 }
 
-/* Layout: place image and text side-by-side using flexbox inside .dish-body */
 main .dish .dish-body {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  flex-wrap: wrap; /* allow wrapping on very small screens */
+  flex-wrap: wrap;
 }
 
-/* Make the image a fixed column on larger screens and responsive on small screens */
 main .dish .dish-body img {
   width: 300px;
   height: auto;
   object-fit: cover;
-  flex: 0 0 300px; /* don't grow or shrink below 300px column on larger screens */
+  flex: 0 0 300px;
   display: block;
 }
 
-/* The info column can grow and shrink */
 main .dish .dish-body .dish-info {
   flex: 1 1 auto;
 }
 
-@media (max-width: 600px) {
-  /* stack image above text on small screens */
-  main .dish .dish-body {
-    flex-direction: column;
-  }
-
-  main .dish .dish-body img {
-    width: 100%;
-    flex: 0 0 auto;
-  }
-}
-
-/* .cta class with !important example: !important forces this rule to win over other competing rules */
-/* Primary CTA styling (keeps the !important demonstration but looks better) */
-button.cta {
-  background: var(--accent) !important;
-  color: #fff;
-  border: none;
-  padding: 0.7rem 1.1rem;
-  cursor: pointer;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(26,115,232,0.18);
-  font-weight: 600;
-}
-
-/* Attempt to override .cta without !important — this will lose to the previous rule */
-button.special-override.cta {
-  background: #00cc66;
-}
-
-/* Table styles */
+/* ---------- Table styles ---------- */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -134,18 +101,34 @@ th, td {
   text-align: left;
 }
 
-/* Responsive adjustments using @media (Media Queries Level 3) */
+/* 3.7 @media */
 @media (max-width: 600px) {
-  /* change nav layout from horizontal to vertical */
-  nav > ul > li {
-    display: block;
+  nav > ul {
+    flex-direction: column;
+    flex-direction: column;
+    align-items: center;
   }
 
+  nav > ul > li > a {
+    display: block;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+  }
+
+  main .dish .dish-body {
+    flex-direction: column;
+  }
+
+  main .dish .dish-body img {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
   main {
     padding: 0.5rem;
   }
-
-  /* Simple responsive table to stack rows on small screens */
+  
   table, thead, tbody, th, td, tr {
     display: block;
   }
@@ -158,7 +141,7 @@ th, td {
   }
 }
 
-/* ---------- Order form styles (prettier layout) ---------- */
+/* ---------- Order form styles ---------- */
 form.form-card {
   background: #ffffff;
   padding: 1.25rem;
@@ -173,7 +156,6 @@ form.form-card legend {
   padding: 0 0.25rem;
 }
 
-/* Two-column grid for labels+controls on larger screens */
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -187,7 +169,6 @@ form.form-card legend {
   color: var(--muted);
 }
 
-/* Make inputs and selects full-width inside grid cells */
 form.form-card input[type="text"],
 form.form-card input[type="email"],
 form.form-card input[type="tel"],
@@ -217,14 +198,33 @@ form.form-card select {
   font-weight: 500;
 }
 
-/* Align the final button to the right on wide screens */
+#order button.cta {
+  background: #00cc66;
+}
+
+button.cta {
+  background: var(--accent) !important; /* 3.6 !important */
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(26,115,232,0.18);
+  font-weight: 600;
+}
+
 .form-card button.cta {
   margin-left: auto;
   display: block;
 }
 
-/* Small screens: single column form */
-@media (max-width: 700px) {
+form.form-card input:focus, form.form-card select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(26,115,232,0.08);
+  border-color: var(--accent);
+}
+
+@media (max-width: 600px) {
   .form-grid {
     grid-template-columns: 1fr;
   }
@@ -235,14 +235,3 @@ form.form-card select {
     width: 100%;
   }
 }
-
-/* subtle focus state */
-form.form-card input:focus, form.form-card select:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(26,115,232,0.08);
-  border-color: var(--accent);
-}
-
-/* end form styles */
-
-/* End of stylesheet */
