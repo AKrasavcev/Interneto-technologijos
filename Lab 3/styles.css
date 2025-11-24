@@ -61,6 +61,12 @@ a[href$=".html"] {
 }
 
 /* ---------- Main content styles ---------- */
+.restaurant main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
 
 main .dish .description {
   margin-top: 0.25rem;
@@ -74,7 +80,6 @@ main .dish .dish-body {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  flex-wrap: wrap;
 }
 
 main .dish .dish-body img {
@@ -86,7 +91,16 @@ main .dish .dish-body img {
 }
 
 main .dish .dish-body .dish-info {
+  flex-wrap: wrap;
   flex: 1 1 auto;
+}
+
+.restaurant aside {
+  background: #f8f8f8;
+  padding: 1rem;
+  border-radius: 6px;
+  position: sticky;
+  top: 1rem; /* stays visible while scrolling */
 }
 
 /* ---------- Table styles ---------- */
@@ -114,6 +128,13 @@ th, td {
     padding: 0.75rem 0.5rem;
     text-align: center;
     border-top: 1px solid #eee;
+  }
+
+  .restaurant main {
+        grid-template-columns: 1fr;
+  }
+  .restaurant aside {
+      position: static;
   }
 
   main .dish .dish-body {
