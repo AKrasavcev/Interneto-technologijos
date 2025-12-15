@@ -73,18 +73,33 @@ $(document).ready(function() {
 
 
   // 4.3.a Change text content
-  $('#change-text').on('click', function() {
-    $('#demo-text').text('The text has been changed using jQuery .text() method!');
-  });
+$('#change-text').on('click', function() {
+  const currentText = $('#demo-text').text();
+  if (currentText === 'This is the original text.') {
+    $('#demo-text').text('Changed text');
+  } else {
+    $('#demo-text').text('This is the original text.');
+  }
+});
 
   // 4.3.b Change style
   $('#change-style').on('click', function() {
-    $('#styled-text').css({
-      'color': '#e74c3c',
-      'font-size': '24px',
-      'font-weight': 'bold',
-      'background-color': '#fff3cd'
-    });
+    const currentColor = $('#styled-text').css('color');
+    if (currentColor === 'rgb(231, 76, 60)') {
+      $('#styled-text').css({
+        'color': '',
+        'font-size': '',
+        'font-weight': '',
+        'background-color': ''
+      });
+    } else {
+      $('#styled-text').css({
+        'color': '#e74c3c',
+        'font-size': '24px',
+        'font-weight': 'bold',
+        'background-color': '#fff3cd'
+      });
+    }
   });
 
   // 4.3.c Remove element
